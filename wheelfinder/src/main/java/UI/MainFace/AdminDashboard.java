@@ -14,38 +14,55 @@ import javax.swing.table.DefaultTableModel;
 import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
+import main.java.Interact.AddNewAccount;
+import main.java.Interact.AddNewCar;
+import main.java.Interact.ChangePassword;
+import main.java.Interact.DeleteCar;
 import main.java.UI.Control.AddNewAdminGUI;
 import main.java.UI.Control.DeleteCarGUI;
 import main.java.UI.Control.AddNewCarGUI;
 import main.java.UI.Control.DeleteUserGUI;
 import main.java.UI.Control.UpdateCarGUI;
+import main.java.Interact.DeleteCar;
+import main.java.Interact.DeleteUser;
+import main.java.Interact.Quit;
+import main.java.Interact.ShowUserBuys;
+import main.java.Interact.UpdateCar;
+import main.java.Interact.ViewAllUser;
+import main.java.Interact.ViewCar;
 
 /**
  *
  * @author admin
  */
-public class AdminDashboard extends javax.swing.JFrame{
 
+public class AdminDashboard extends javax.swing.JFrame{
     /**
      * Creates new form AdminDashboard
      */
+    
+
     public AdminDashboard() {
+
         initComponents();
         loadCarData(); // Tải dữ liệu khi khởi tạo giao diện
         loadUserData();
     }
 
+
     
+
     class jPanelGradient extends JPanel {
+
         protected void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        Color color1 = new Color(100,57,255);
-        Color color2 = new Color(124,245,255);
-        int width = getWidth();
-        int height = getHeight();
-        GradientPaint gradientPaint = new GradientPaint(0, 0, color1, 0 , height, color2);
-        g2d.setPaint(gradientPaint);
-        g2d.fillRect(0, 0, width, height);
+            Graphics2D g2d = (Graphics2D) g;
+            Color color1 = new Color(100, 57, 255);
+            Color color2 = new Color(124, 245, 255);
+            int width = getWidth();
+            int height = getHeight();
+            GradientPaint gradientPaint = new GradientPaint(0, 0, color1, 0, height, color2);
+            g2d.setPaint(gradientPaint);
+            g2d.fillRect(0, 0, width, height);
         }
     }
 
@@ -554,7 +571,7 @@ public class AdminDashboard extends javax.swing.JFrame{
 
     private void ShowUserBuyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowUserBuyButtonActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_ShowUserBuyButtonActionPerformed
 
     private void carLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carLabelMouseClicked
@@ -562,7 +579,7 @@ public class AdminDashboard extends javax.swing.JFrame{
         CarAdminPanel.setVisible(true);
         UserAdminPanel.setVisible(false);
         PassAdminPanel.setVisible(false);
-        
+
     }//GEN-LAST:event_carLabelMouseClicked
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -587,8 +604,8 @@ public class AdminDashboard extends javax.swing.JFrame{
 
         AddNewCarGUI addcar = new AddNewCarGUI(this);
         addcar.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_addNewCarButtonActionPerformed
 
     private void addNewAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewAdminButtonActionPerformed
@@ -599,10 +616,9 @@ public class AdminDashboard extends javax.swing.JFrame{
 
     private void deleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCarButtonActionPerformed
         // TODO add your handling code here:
+       
 
 
-        
-        
     }//GEN-LAST:event_deleteCarButtonActionPerformed
 
     private void DeleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserButtonActionPerformed
@@ -614,36 +630,37 @@ public class AdminDashboard extends javax.swing.JFrame{
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminDashboard().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new AdminDashboard().setVisible(true);
+        }
+    });
+}
+
     public void loadCarData() {
     try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
         Connection conn = db.getConnection(); // Lấy kết nối từ class Database
@@ -679,7 +696,8 @@ public class AdminDashboard extends javax.swing.JFrame{
         e.printStackTrace();
     }
 }
-public void loadUserData() {
+
+    public void loadUserData() {
     try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
         Connection conn = db.getConnection(); // Lấy kết nối từ class Database
         if (conn == null) {
@@ -713,9 +731,6 @@ public void loadUserData() {
     }
 
 }
-
-
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -758,4 +773,7 @@ public void loadUserData() {
     private javax.swing.JTable viewCarTable;
     private javax.swing.JTable viewUserTable;
     // End of variables declaration//GEN-END:variables
+
+
+
 }

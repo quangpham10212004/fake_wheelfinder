@@ -1,7 +1,6 @@
 
 package main.java.Entity;
 
-
 import java.util.Scanner;
 import main.java.Interact.AddNewAccount;
 import main.java.Interact.AddNewCar;

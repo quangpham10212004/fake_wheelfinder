@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
+import main.java.Interact.ViewAllUser;
 import main.java.Interact.ViewCar;
 
 /**
@@ -41,7 +42,7 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
-        userIdTextField = new javax.swing.JTextField();
+        useridtxt = new javax.swing.JTextField();
         delIdUserButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
@@ -60,9 +61,9 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
         idLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         idLabel.setText("User's ID");
 
-        userIdTextField.addActionListener(new java.awt.event.ActionListener() {
+        useridtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userIdTextFieldActionPerformed(evt);
+                useridtxtActionPerformed(evt);
             }
         });
 
@@ -99,7 +100,7 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(idLabel)
                         .addGap(34, 34, 34)
-                        .addComponent(userIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(useridtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(64, 64, 64))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
@@ -114,7 +115,7 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLabel)
-                    .addComponent(userIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(useridtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delIdUserButton)
@@ -137,19 +138,29 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIdTextFieldActionPerformed
+    private void useridtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useridtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userIdTextFieldActionPerformed
+    }//GEN-LAST:event_useridtxtActionPerformed
 
     private void delIdUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delIdUserButtonActionPerformed
-        int id = Integer.parseInt(userIdTextField.getText());
-        
-        try {
-            String update = "delete from car where ID = '"+id+"'";
-            database.getStatement().execute(update);
-            JOptionPane.showMessageDialog(this, "Delete Successfully", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException e) {
-            // TODO: handle exception
+        int id = Integer.parseInt(useridtxt.getText());
+        int cur_id = user.getID();  
+        while(id == -1 || id == cur_id){
+            if(id == -1){
+                new ViewAllUser().operation(database, sc, user);
+            }
+            if(id == cur_id){
+                System.out.println("You Can Not Delete Yourself");
+            }
+            System.out.println("Enter ID Of The User: (-1) to View All Users");
+            id = sc.nextInt();
+        } 
+        try{
+            String del = "delete from user where id ='"+id+"'";
+            database.getStatement().execute(del);
+            System.out.println("User Deleted Successfully!!");
+        }
+        catch(SQLException e){
             e.printStackTrace();
         }
         dispose();
@@ -168,7 +179,7 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField userIdTextField;
+    private javax.swing.JTextField useridtxt;
     // End of variables declaration//GEN-END:variables
     public void operation(Database database, Scanner sc, User user) {
         java.awt.EventQueue.invokeLater(() -> {
