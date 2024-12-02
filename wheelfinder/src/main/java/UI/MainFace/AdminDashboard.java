@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import main.java.Entity.Database;
 import main.java.UI.AddNewCar;
+import main.java.UI.Control.DeleteCarGUI;
 
 /**
  *
@@ -812,6 +813,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         deleteCarButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         deleteCarButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteCarButton.setText("Delete Car");
+        deleteCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CarAdminPanelLayout = new javax.swing.GroupLayout(CarAdminPanel);
         CarAdminPanel.setLayout(CarAdminPanelLayout);
@@ -1147,6 +1153,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         addNewAdminDialog.pack();
         addNewAdminDialog.setLocationRelativeTo(null);
     }//GEN-LAST:event_addNewAdminButtonActionPerformed
+
+    private void deleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCarButtonActionPerformed
+        // TODO add your handling code here:
+        DeleteCarGUI deleGui = new DeleteCarGUI();
+        deleGui.setVisible(true);
+    }//GEN-LAST:event_deleteCarButtonActionPerformed
 
     /**
      * @param args the command line arguments

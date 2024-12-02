@@ -123,7 +123,7 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(334, 207));
+        setSize(new java.awt.Dimension(336, 207));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

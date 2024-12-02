@@ -18,6 +18,9 @@ import main.java.Interact.ViewCar;
  */
 public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
 
+    public DeleteCarGUI(){
+        initComponents();
+    }
     /**
      * Creates new form DeleteCarGUI
      */
