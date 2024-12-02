@@ -4,30 +4,18 @@
  */
 package main.java.UI.Control;
 
-import java.sql.SQLException;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
-import main.java.Entity.Database;
-import main.java.Entity.Operation;
-import main.java.Entity.User;
-import main.java.Interact.ViewCar;
-
 /**
  *
  * @author admin
  */
-public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
+public class BuyCarGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DeleteCarGUI
      */
-    public DeleteCarGUI(Database database, Scanner sc, User user) {
-    this.database = database;
-    this.sc = sc;
-    this.user = user;
-    initComponents();
-}
-
+    public BuyCarGUI() {
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,14 +29,13 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
         jPanel1 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
-        carID = new javax.swing.JTextField();
-        delButton = new javax.swing.JButton();
+        selectCarIdTextField = new javax.swing.JTextField();
+        buyCarButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Delete Car");
+        setTitle("Buy Car");
         setMinimumSize(new java.awt.Dimension(320, 200));
-        setPreferredSize(new java.awt.Dimension(320, 200));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -56,24 +43,24 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(54, 171, 239));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Delete Car");
+        jLabel10.setText("Buy Car");
 
         idLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         idLabel.setText("Car's ID");
 
-        carID.addActionListener(new java.awt.event.ActionListener() {
+        selectCarIdTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carIDActionPerformed(evt);
+                selectCarIdTextFieldActionPerformed(evt);
             }
         });
 
-        delButton.setBackground(new java.awt.Color(54, 171, 239));
-        delButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        delButton.setForeground(new java.awt.Color(255, 255, 255));
-        delButton.setText("Delete");
-        delButton.addActionListener(new java.awt.event.ActionListener() {
+        buyCarButton.setBackground(new java.awt.Color(54, 171, 239));
+        buyCarButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buyCarButton.setForeground(new java.awt.Color(255, 255, 255));
+        buyCarButton.setText("Buy");
+        buyCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delButtonActionPerformed(evt);
+                buyCarButtonActionPerformed(evt);
             }
         });
 
@@ -90,20 +77,18 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(idLabel)
-                        .addGap(34, 34, 34)
-                        .addComponent(carID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelButton)
+                    .addComponent(idLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectCarIdTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buyCarButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(49, 49, 49))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -115,10 +100,10 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLabel)
-                    .addComponent(carID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectCarIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delButton)
+                    .addComponent(buyCarButton)
                     .addComponent(cancelButton))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
@@ -138,44 +123,62 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void carIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carIDActionPerformed
+    private void selectCarIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCarIdTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_carIDActionPerformed
+    }//GEN-LAST:event_selectCarIdTextFieldActionPerformed
 
-    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        int id = Integer.parseInt(carID.getText());
-        
-        try {
-            String update = "delete from car where ID = '"+id+"'";
-            database.getStatement().execute(update);
-            JOptionPane.showMessageDialog(this, "Delete Successfully", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-        dispose();
-    }//GEN-LAST:event_delButtonActionPerformed
+    private void buyCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyCarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buyCarButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
- private Database database;
-    private Scanner sc;
-    private User user;
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField carID;
-    private javax.swing.JButton delButton;
-    private javax.swing.JLabel idLabel;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JPanel jPanel1;
-    // End of variables declaration//GEN-END:variables
-    public void operation(Database database, Scanner sc, User user) {
-        java.awt.EventQueue.invokeLater(() -> {
-            DeleteCarGUI frame = new DeleteCarGUI(database, sc, user);
-            frame.setVisible(true);
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BuyCarGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BuyCarGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BuyCarGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BuyCarGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BuyCarGUI().setVisible(true);
+            }
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buyCarButton;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField selectCarIdTextField;
+    // End of variables declaration//GEN-END:variables
 }
