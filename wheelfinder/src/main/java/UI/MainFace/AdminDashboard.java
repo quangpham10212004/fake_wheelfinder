@@ -1109,8 +1109,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void addNewCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCarButtonActionPerformed
         // TODO add your handling code here:
-        AddNewCar AddNewCar = new AddNewCar();
-        AddNewCar.setVisible(true);
+        
     }//GEN-LAST:event_addNewCarButtonActionPerformed
 
     private void newIdAddNewCarTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newIdAddNewCarTextField1ActionPerformed
