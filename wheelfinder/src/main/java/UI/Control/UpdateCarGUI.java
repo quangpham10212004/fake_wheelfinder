@@ -4,6 +4,16 @@
  */
 package main.java.UI.Control;
 
+import javax.swing.JOptionPane;
+import main.java.Entity.Database;
+import javax.swing.JOptionPane;  // Để sử dụng JOptionPane cho việc hiển thị thông báo
+import java.sql.Connection;       // Để sử dụng Connection trong SQL
+import java.sql.PreparedStatement; // Để sử dụng PreparedStatement
+import java.sql.SQLException;     // Để xử lý lỗi SQL
+import java.math.BigDecimal;     // Để sử dụng BigDecimal cho giá tiền
+import main.java.UI.MainFace.AdminDashboard;
+
+
 /**
  *
  * @author admin
@@ -212,10 +222,74 @@ public class UpdateCarGUI extends javax.swing.JFrame {
 
     private void updateCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCarButtonActionPerformed
         // TODO add your handling code here:
+         String id = idUpdateCarTextField.getText();
+    String brand = brandUpdateCarTextField.getText();
+    String model = modelUpdateCarTextField.getText();
+    String color = colourUpdateCarTextField.getText();
+    String year = yearUpdateCarTextField.getText();
+    String price = priceUpdateCarTextField.getText();
+    String numcar = numberUpdateCarTextField.getText();
+
+    // Kiểm tra dữ liệu có bị trống không
+    if (id.isEmpty() || brand.isEmpty() || model.isEmpty() || color.isEmpty() 
+        || year.isEmpty() || price.isEmpty() || numcar.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        return; // Dừng thực thi nếu có trường nào trống
+    }
+
+    try {
+        // Kết nối cơ sở dữ liệu và thực hiện câu lệnh SQL
+        try (Database db = new Database(); 
+             Connection conn = db.getConnection()) {
+
+            // Câu lệnh SQL để cập nhật
+            String sql = "UPDATE car SET brand = ?, model = ?, color = ?, yearRelease = ?, price = ?, available = available - 1 WHERE id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, brand);
+                pstmt.setString(2, model);
+                pstmt.setString(3, color);
+                pstmt.setInt(4, Integer.parseInt(year)); // Chuyển năm sang int
+                pstmt.setBigDecimal(5, new BigDecimal(price)); // Chuyển giá sang BigDecimal
+                pstmt.setString(6, id); // Sử dụng id để tìm xe
+
+                // Thực thi câu lệnh
+                int rowsUpdated = pstmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    JOptionPane.showMessageDialog(this, "Dữ liệu đã được cập nhật thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                    // Xóa các trường nhập liệu sau khi cập nhật thành công
+                    idUpdateCarTextField.setText("");
+                    brandUpdateCarTextField.setText("");
+                    modelUpdateCarTextField.setText("");
+                    colourUpdateCarTextField.setText("");
+                    yearUpdateCarTextField.setText("");
+                    priceUpdateCarTextField.setText("");
+                    numberUpdateCarTextField.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy xe với ID: " + id, "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng cho năm và giá!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Lỗi cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    AdminDashboard Adboard = new AdminDashboard();
+    Adboard.setVisible(true);
+    
+    dispose();
+         
+       
+        
     }//GEN-LAST:event_updateCarButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+            AdminDashboard Adboard = new AdminDashboard();
+    Adboard.setVisible(true);
+    
+    dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void brandUpdateCarTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandUpdateCarTextFieldActionPerformed

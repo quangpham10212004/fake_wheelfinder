@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import main.java.Entity.Database;
-import main.java.Entity.Operation;
+import main.java.UI.Control.Operation;
 import main.java.Entity.User;
 import main.java.Interact.ViewCar;
 
@@ -21,9 +21,9 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
     /**
      * Creates new form DeleteCarGUI
      */
-    public DeleteCarGUI(Database database, Scanner sc, User user) {
+    
+    public DeleteCarGUI(Database database, User user) {
     this.database = database;
-    this.sc = sc;
     this.user = user;
     initComponents();
 }
@@ -160,7 +160,6 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
  private Database database;
-    private Scanner sc;
     private User user;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -171,9 +170,9 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public void operation(Database database, Scanner sc, User user) {
+    public void operation(Database database, User user) {
         java.awt.EventQueue.invokeLater(() -> {
-            DeleteCarGUI frame = new DeleteCarGUI(database, sc, user);
+            DeleteCarGUI frame = new DeleteCarGUI(database, user);
             frame.setVisible(true);
         });
     }

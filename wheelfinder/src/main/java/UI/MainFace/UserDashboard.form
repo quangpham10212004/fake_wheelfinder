@@ -310,7 +310,7 @@
                       <Component id="mainContentPanel" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="deleteCarButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="BuyCarButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -319,7 +319,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="deleteCarButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="BuyCarButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="mainContentPanel" max="32767" attributes="0"/>
                       </Group>
@@ -377,7 +377,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="deleteCarButton">
+                <Component class="javax.swing.JButton" name="BuyCarButton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ef" green="ab" red="36" type="rgb"/>
@@ -391,7 +391,7 @@
                     <Property name="text" type="java.lang.String" value="Buy Car"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCarButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuyCarButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -4,6 +4,15 @@
  */
 package main.java.UI.Control;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import main.java.Entity.Database;
+import main.java.UI.MainFace.AdminDashboard;
+import main.java.UI.MainFace.UserDashboard;
+
 /**
  *
  * @author admin
@@ -125,10 +134,53 @@ public class BuyCarGUI extends javax.swing.JFrame {
 
     private void selectCarIdTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCarIdTextFieldActionPerformed
         // TODO add your handling code here:
+         
     }//GEN-LAST:event_selectCarIdTextFieldActionPerformed
 
     private void buyCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyCarButtonActionPerformed
         // TODO add your handling code here:
+        String id = selectCarIdTextField.getText();
+
+    // Kiểm tra dữ liệu có bị trống không
+    if (id.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+        return; // Dừng thực thi nếu có trường nào trống
+    }
+
+    try {
+        // Kết nối cơ sở dữ liệu và thực hiện câu lệnh SQL
+        try (Database db = new Database(); 
+             Connection conn = db.getConnection()) {
+
+            // Câu lệnh SQL để cập nhật
+            String sql = "UPDATE car SET  available = available - 1 WHERE id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, id); // Sử dụng id để tìm xe
+
+                // Thực thi câu lệnh
+                int rowsUpdated = pstmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    JOptionPane.showMessageDialog(this, "Bạn đã mua thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                    // Xóa các trường nhập liệu sau khi cập nhật thành công
+                    selectCarIdTextField.setText("");
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy xe với ID: " + id, "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng cho năm và giá!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Lỗi cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    UserDashboard userboard = new UserDashboard();
+    userboard.setVisible(true);
+    
+    dispose();
+         
+        
     }//GEN-LAST:event_buyCarButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

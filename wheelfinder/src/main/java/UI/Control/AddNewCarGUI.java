@@ -9,6 +9,7 @@ import java.util.Scanner;
 import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
+import main.java.UI.MainFace.AdminDashboard;
 
 /**
  *
@@ -230,6 +231,11 @@ public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
             e.printStackTrace();
         }
         dispose();
+        
+        AdminDashboard adminboard = new AdminDashboard();
+        adminboard.setVisible(true);
+        
+        
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

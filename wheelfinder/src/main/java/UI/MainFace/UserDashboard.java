@@ -10,10 +10,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import main.java.Entity.Database;
+import main.java.UI.Control.BuyCarGUI;
 
 /**
  *
@@ -70,7 +73,7 @@ public class UserDashboard extends javax.swing.JFrame {
         mainContentPanel = new jPanelGradient();
         jScrollPane1 = new javax.swing.JScrollPane();
         viewCarTable = new javax.swing.JTable();
-        deleteCarButton = new javax.swing.JButton();
+        BuyCarButton = new javax.swing.JButton();
         MyBuyUserPanel = new jPanelGradient();
         mainContentPanel1 = new jPanelGradient();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -258,13 +261,13 @@ public class UserDashboard extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
         );
 
-        deleteCarButton.setBackground(new java.awt.Color(54, 171, 239));
-        deleteCarButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        deleteCarButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteCarButton.setText("Buy Car");
-        deleteCarButton.addActionListener(new java.awt.event.ActionListener() {
+        BuyCarButton.setBackground(new java.awt.Color(54, 171, 239));
+        BuyCarButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BuyCarButton.setForeground(new java.awt.Color(255, 255, 255));
+        BuyCarButton.setText("Buy Car");
+        BuyCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCarButtonActionPerformed(evt);
+                BuyCarButtonActionPerformed(evt);
             }
         });
 
@@ -275,14 +278,14 @@ public class UserDashboard extends javax.swing.JFrame {
             .addComponent(mainContentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CarUserPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteCarButton)
+                .addComponent(BuyCarButton)
                 .addGap(62, 62, 62))
         );
         CarUserPanelLayout.setVerticalGroup(
             CarUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CarUserPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(deleteCarButton)
+                .addComponent(BuyCarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainContentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -490,9 +493,12 @@ public class UserDashboard extends javax.swing.JFrame {
         PassUserPanel.setVisible(true);
     }//GEN-LAST:event_passwordLabelMouseClicked
 
-    private void deleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCarButtonActionPerformed
+    private void BuyCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyCarButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteCarButtonActionPerformed
+        BuyCarGUI buycar = new BuyCarGUI();
+        buycar.setVisible(true);
+
+    }//GEN-LAST:event_BuyCarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,6 +602,7 @@ public class UserDashboard extends javax.swing.JFrame {
     }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuyCarButton;
     private javax.swing.JTable BuyUserTable;
     private javax.swing.JPanel CarUserPanel;
     private javax.swing.JPanel MyBuyUserPanel;
@@ -604,7 +611,6 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel carLabel;
     private javax.swing.JPanel card;
     private javax.swing.JButton changPassButton;
-    private javax.swing.JButton deleteCarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
