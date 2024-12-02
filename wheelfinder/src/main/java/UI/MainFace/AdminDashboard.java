@@ -1156,8 +1156,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void deleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCarButtonActionPerformed
         // TODO add your handling code here:
-        DeleteCarGUI deleGui = new DeleteCarGUI();
-        deleGui.setVisible(true);
     }//GEN-LAST:event_deleteCarButtonActionPerformed
 
     /**
