@@ -15,13 +15,14 @@ import main.java.UI.MainFace.AdminDashboard;
  *
  * @author admin
  */
-public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
+public class AddNewCarGUI extends javax.swing.JFrame{
 
     /**
      * Creates new form AddNewCar
      */
-    
-    public AddNewCarGUI() {
+    private AdminDashboard adminboard;
+    public AddNewCarGUI(AdminDashboard adminboard) {
+        this.adminboard = adminboard;
         initComponents();
     }
 
@@ -91,6 +92,18 @@ public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
         model.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modelActionPerformed(evt);
+            }
+        });
+
+        currentNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentNumberActionPerformed(evt);
+            }
+        });
+
+        yearRelease.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearReleaseActionPerformed(evt);
             }
         });
 
@@ -230,16 +243,23 @@ public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
             // TODO: handle exception
             e.printStackTrace();
         }
-        dispose();
+        adminboard.dispose();
         
         AdminDashboard adminboard = new AdminDashboard();
         adminboard.setVisible(true);
+        
+        this.dispose();
+        
+ 
         
         
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+        AdminDashboard adminboard = new AdminDashboard();
+        adminboard.setVisible(true);
+        dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void brandNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandNameActionPerformed
@@ -249,6 +269,14 @@ public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
     private void modelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modelActionPerformed
+
+    private void currentNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentNumberActionPerformed
+
+    private void yearReleaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearReleaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yearReleaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,11 +301,6 @@ public class AddNewCarGUI extends javax.swing.JFrame implements Operation {
     private javax.swing.JTextField yearRelease;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void operation(Database database, Scanner sc, User user) {
-         java.awt.EventQueue.invokeLater(() -> {
-            AddNewCarGUI frame = new AddNewCarGUI();
-            frame.setVisible(true);
-        });
-    }
 }
+
+

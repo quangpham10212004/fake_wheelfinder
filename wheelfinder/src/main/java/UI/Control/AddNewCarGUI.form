@@ -234,8 +234,14 @@
         <Component class="javax.swing.JTextField" name="price">
         </Component>
         <Component class="javax.swing.JTextField" name="currentNumber">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="currentNumberActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="yearRelease">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="yearReleaseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>

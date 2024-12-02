@@ -4,6 +4,13 @@
  */
 package main.java.UI.Control;
 
+import javax.swing.JOptionPane; // Để hiển thị thông báo
+import java.sql.Connection; // Để làm việc với kết nối cơ sở dữ liệu
+import java.sql.PreparedStatement; // Để thực thi câu lệnh SQL với tham số
+import java.sql.SQLException; // Để xử lý lỗi liên quan đến SQL
+import main.java.Entity.Database;
+import main.java.UI.MainFace.AdminDashboard;
+
 /**
  *
  * @author admin
@@ -232,6 +239,61 @@ public class AddNewAdminGUI extends javax.swing.JFrame {
 
     private void aNewAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aNewAdminButtonActionPerformed
         // TODO add your handling code here:
+        String firstName = firstNameAddNewAdminTextField.getText();
+    String lastName = lastNameAddNewAdminTextField.getText();
+    String email = emailAddNewAdminTextField.getText();
+    String phone = phoneNumAddNewAdminTextField.getText();
+    String password = passAddNewAdminTextField.getText();
+    String repass = retypePassAddNewAdminTextField.getText();
+    
+    // Kiểm tra xem các trường có bị bỏ trống không
+    if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || repass.isEmpty()) {
+        // Hiển thị thông báo yêu cầu điền đầy đủ thông tin
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        return;  // Dừng lại, không tiếp tục thực hiện hành động thêm dữ liệu vào cơ sở dữ liệu
+    }
+    
+    // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp không
+    if (!password.equals(repass)) {
+        JOptionPane.showMessageDialog(this, "Mật khẩu không khớp!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        return;  // Dừng lại nếu mật khẩu không khớp
+    }
+    
+    // Kết nối cơ sở dữ liệu và chèn dữ liệu
+    try {
+        // Kết nối cơ sở dữ liệu
+        Database db = new Database();
+        Connection conn = db.getConnection();
+        
+        // Câu lệnh SQL chèn dữ liệu vào bảng user
+        String sql = "INSERT INTO user (firstName, lastName, email, phoneNum, passwrd, typeNum) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        
+        // Thiết lập các tham số trong câu lệnh SQL
+        stmt.setString(1, firstName);
+        stmt.setString(2, lastName);
+        stmt.setString(3, email);
+        stmt.setString(4, phone);
+        stmt.setString(5, password);
+        stmt.setInt(6, 1);  // Đặt typeNum là 1 (loại admin)
+        
+        // Thực thi câu lệnh SQL
+        stmt.executeUpdate();
+        
+        // Đóng kết nối
+        stmt.close();
+        conn.close();
+        
+        // Hiển thị thông báo thành công
+        JOptionPane.showMessageDialog(this, "Đã thêm quản admin mới thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    } catch (SQLException ex) {
+        // Xử lý lỗi kết nối cơ sở dữ liệu
+        JOptionPane.showMessageDialog(this, "Có lỗi khi thêm quản trị viên: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    AdminDashboard adminboard = new AdminDashboard();
+    adminboard.setVisible(true);
+    dispose();
+
     }//GEN-LAST:event_aNewAdminButtonActionPerformed
 
     /**
