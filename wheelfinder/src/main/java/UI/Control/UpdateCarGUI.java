@@ -219,6 +219,9 @@ public class UpdateCarGUI extends javax.swing.JFrame {
 
     private void updateCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCarButtonActionPerformed
         // TODO add your handling code here:
+
+         
+        
     }//GEN-LAST:event_updateCarButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

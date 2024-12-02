@@ -4,6 +4,15 @@
  */
 package main.java.UI;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
+import main.java.Entity.Database;
+import main.java.UI.MainFace.AdminDashboard;
+
 /**
  *
  * @author admin
@@ -30,17 +39,17 @@ public class AddNewCar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        BrandNametxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Modeltxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Colortxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        Releasetxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        Pricetxt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        Numcartxt = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -76,48 +85,48 @@ public class AddNewCar extends javax.swing.JFrame {
         jLabel2.setText("Brand name");
         jPanel2.add(jLabel2);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        BrandNametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                BrandNametxtActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
+        jPanel2.add(BrandNametxt);
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Model");
         jPanel2.add(jLabel3);
-        jPanel2.add(jTextField2);
+        jPanel2.add(Modeltxt);
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Colour");
         jPanel2.add(jLabel4);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        Colortxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                ColortxtActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3);
+        jPanel2.add(Colortxt);
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Year Release");
         jPanel2.add(jLabel5);
-        jPanel2.add(jTextField4);
+        jPanel2.add(Releasetxt);
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Price");
         jPanel2.add(jLabel6);
-        jPanel2.add(jTextField5);
+        jPanel2.add(Pricetxt);
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Number of this car");
         jPanel2.add(jLabel7);
-        jPanel2.add(jTextField6);
+        jPanel2.add(Numcartxt);
 
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 70, 5);
         flowLayout1.setAlignOnBaseline(true);
@@ -125,6 +134,11 @@ public class AddNewCar extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -164,18 +178,78 @@ public class AddNewCar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void BrandNametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrandNametxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_BrandNametxtActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void ColortxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColortxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_ColortxtActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+        String brand = BrandNametxt.getText().trim();
+    String model = Modeltxt.getText().trim();
+    String color = Colortxt.getText().trim();
+    String release = Releasetxt.getText().trim();
+    String price = Pricetxt.getText().trim();
+    String numcar = Numcartxt.getText().trim();
+
+    // Kiểm tra nếu bất kỳ trường nào bị bỏ trống
+    if (brand.isEmpty() || model.isEmpty() || color.isEmpty() || 
+        release.isEmpty() || price.isEmpty() || numcar.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Hãy điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Thực hiện thêm vào cơ sở dữ liệu
+    try (Database db = new Database(); // Sử dụng Database với AutoCloseable
+         Connection conn = db.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(
+                 "INSERT INTO car (brand, model, color, yearRelease, price, available) VALUES (?, ?, ?, ?, ?, ?)")) {
+
+        // Chuyển đổi và thiết lập các tham số cho PreparedStatement
+        int yearRelease = Integer.parseInt(release);
+        BigDecimal carPrice = new BigDecimal(price);
+        int availableCars = Integer.parseInt(numcar);
+
+        pstmt.setString(1, brand);
+        pstmt.setString(2, model);
+        pstmt.setString(3, color);
+        pstmt.setInt(4, yearRelease);
+        pstmt.setBigDecimal(5, carPrice);
+        pstmt.setInt(6, availableCars);
+
+        // Thực thi câu lệnh SQL
+        int rowsInserted = pstmt.executeUpdate();
+        if (rowsInserted > 0) {
+            JOptionPane.showMessageDialog(this, "Dữ liệu đã được thêm thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+            // Xóa các trường nhập liệu sau khi thành công
+            BrandNametxt.setText("");
+            Modeltxt.setText("");
+            Colortxt.setText("");
+            Releasetxt.setText("");
+            Pricetxt.setText("");
+            Numcartxt.setText("");
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng cho năm phát hành, giá và số lượng xe!", "Lỗi định dạng", JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Lỗi cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    AdminDashboard AdminDashboard = new AdminDashboard();
+        AdminDashboard.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AdminDashboard AdminDashboard = new AdminDashboard();
+        AdminDashboard.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,6 +287,12 @@ public class AddNewCar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField BrandNametxt;
+    private javax.swing.JTextField Colortxt;
+    private javax.swing.JTextField Modeltxt;
+    private javax.swing.JTextField Numcartxt;
+    private javax.swing.JTextField Pricetxt;
+    private javax.swing.JTextField Releasetxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -225,11 +305,5 @@ public class AddNewCar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
