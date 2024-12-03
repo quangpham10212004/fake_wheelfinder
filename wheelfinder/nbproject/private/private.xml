@@ -20,17 +20,22 @@
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/MainFace/StartWindow.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/UpdateCarGUI.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/DeleteCarGUI.java</file>
+            <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/Operation.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/MainFace/UserDashboard.java</file>
+            <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/AddNewAdminGUI.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Main/Main.java</file>
+            <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Interact/ChangePassword.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Entity/User.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/AddNewCarGUI.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Interact/DeleteUser.java</file>
+            <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Interact/Quit.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/DeleteUserGUI.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/ViewAllUserGUI.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Entity/Client.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/Control/SelectUserBuys.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/UI/MainFace/AdminDashboard.java</file>
             <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Interact/AddNewAccount.java</file>
+            <file>file:/D:/Minh/java/NetBeansProjects/wheelfinder/wheelfinder/src/main/java/Interact/DeleteCar.java</file>
         </group>
     </open-files>
 </project-private>

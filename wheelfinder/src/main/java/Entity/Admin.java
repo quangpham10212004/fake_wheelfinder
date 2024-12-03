@@ -12,6 +12,7 @@ import main.java.Interact.ShowUserBuys;
 import main.java.Interact.UpdateCar;
 import main.java.Interact.ViewAllUser;
 import main.java.Interact.ViewCar;
+import main.java.UI.MainFace.AdminDashboard;
 
 
 public class Admin extends User {
@@ -25,20 +26,7 @@ public class Admin extends User {
     }
     
     public void showList(Database database , Scanner sc){
-        System.out.println("\n1. Add New Car");
-        System.out.println("2. View Car");
-        System.out.println("3. Update Car");
-        System.out.println("4. Delete Car");
-        System.out.println("5. Add New Admin");
-        System.out.println("6. Show User's Buys");
-        System.out.println("7. Change Password");
-        System.out.println("8. View All Users");
-        System.out.println("9. Delete User");
-        System.out.println("10. Quit\n");
-        
-        int i = sc.nextInt();
-        operations[i-1].operation(database, sc, this);
-        if(i!= 10)showList(database, sc);
-        
+        new AdminDashboard();
+        new AdminDashboard().setVisible(true);  
     }
 }

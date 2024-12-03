@@ -12,23 +12,23 @@ import main.java.Entity.Operation;
 import main.java.Entity.User;
 import main.java.Interact.ViewAllUser;
 import main.java.Interact.ViewCar;
+import main.java.UI.MainFace.AdminDashboard;
 
 /**
  *
  * @author admin
  */
-public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
-
+public class DeleteUserGUI extends javax.swing.JFrame {
+    private Database database;
+    private User user;
     /**
      * Creates new form DeleteCarGUI
      */
-    public DeleteUserGUI(Database database, Scanner sc, User user) {
-    this.database = database;
-    this.sc = sc;
-    this.user = user;
-    initComponents();
-}
-
+        private AdminDashboard adminboard;
+    public DeleteUserGUI(AdminDashboard adminDashboard) {
+        this.adminboard = adminDashboard;
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,34 +144,28 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
 
     private void delIdUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delIdUserButtonActionPerformed
         int id = Integer.parseInt(useridtxt.getText());
-        int cur_id = user.getID();  
-        while(id == -1 || id == cur_id){
-            if(id == -1){
-                new ViewAllUser().operation(database, sc, user);
-            }
-            if(id == cur_id){
-                System.out.println("You Can Not Delete Yourself");
-            }
-            System.out.println("Enter ID Of The User: (-1) to View All Users");
-            id = sc.nextInt();
-        } 
-        try{
-            String del = "delete from user where id ='"+id+"'";
+        Database database = new Database();
+        try {
+            String del = "delete from user where id ='" + id + "'";
             database.getStatement().execute(del);
             System.out.println("User Deleted Successfully!!");
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        adminboard.dispose();
+        AdminDashboard adminboard = new AdminDashboard();
+        adminboard.setVisible(true);
         dispose();
     }//GEN-LAST:event_delIdUserButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        adminboard.dispose();
+        AdminDashboard adminboard = new AdminDashboard();
+        adminboard.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_cancelButtonActionPerformed
- private Database database;
-    private Scanner sc;
-    private User user;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
@@ -181,11 +175,5 @@ public class DeleteUserGUI extends javax.swing.JFrame implements Operation {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField useridtxt;
     // End of variables declaration//GEN-END:variables
-    public void operation(Database database, Scanner sc, User user) {
-        java.awt.EventQueue.invokeLater(() -> {
-            DeleteUserGUI frame = new DeleteUserGUI(database, sc, user);
-            frame.setVisible(true);
-        });
-    }
 
 }

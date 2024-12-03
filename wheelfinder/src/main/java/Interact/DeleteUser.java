@@ -8,9 +8,10 @@ import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
 
-public class DeleteUser implements Operation{
-    public void operation(Database database, Scanner sc, User user){
-    DeleteUserGUI deluser = new DeleteUserGUI(database, sc, user);
+public class DeleteUser implements Operation {
+
+    public void operation(Database database, Scanner sc, User user) {
+        DeleteUserGUI deluser = new DeleteUserGUI();
         deluser.setVisible(true);
         
     }

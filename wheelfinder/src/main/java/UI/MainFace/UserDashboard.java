@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import main.java.Entity.Database;
 import main.java.UI.Control.BuyCarGUI;
+import main.java.UI.Control.ChangePasswordGUI;
 
 /**
  *
@@ -139,6 +140,11 @@ public class UserDashboard extends javax.swing.JFrame {
         logoutLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logoutLabel.setForeground(new java.awt.Color(255, 255, 255));
         logoutLabel.setText("Log Out");
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuSideBarPanelLayout = new javax.swing.GroupLayout(menuSideBarPanel);
         menuSideBarPanel.setLayout(menuSideBarPanelLayout);
@@ -488,17 +494,26 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void passwordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordLabelMouseClicked
         // TODO add your handling code here:
-        CarUserPanel.setVisible(false);
-        MyBuyUserPanel.setVisible(false);
-        PassUserPanel.setVisible(true);
+        ChangePasswordGUI changepass = new ChangePasswordGUI();
+        changepass.setVisible(true);
+        dispose();
     }//GEN-LAST:event_passwordLabelMouseClicked
 
     private void BuyCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuyCarButtonActionPerformed
         // TODO add your handling code here:
-        BuyCarGUI buycar = new BuyCarGUI();
+        BuyCarGUI buycar = new BuyCarGUI(this);
         buycar.setVisible(true);
 
     }//GEN-LAST:event_BuyCarButtonActionPerformed
+
+    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Cảm ơn bạn đã dùng ứng dụng của chúng tôi", "GoodBye!!!", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        StartWindow start = new StartWindow();
+        start.setVisible(true);
+        
+    }//GEN-LAST:event_logoutLabelMouseClicked
 
     /**
      * @param args the command line arguments

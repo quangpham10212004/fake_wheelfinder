@@ -11,24 +11,25 @@ import main.java.Entity.Database;
 import main.java.UI.Control.Operation;
 import main.java.Entity.User;
 import main.java.Interact.ViewCar;
+import main.java.UI.MainFace.AdminDashboard;
 
 /**
  *
  * @author admin
  */
-public class DeleteCarGUI extends javax.swing.JFrame implements Operation{
+public class DeleteCarGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DeleteCarGUI
      */
-    
-    public DeleteCarGUI(Database database, Scanner sc, User user) {
-    this.database = database;
-    this.sc = sc;
-    this.user = user;
-    initComponents();
-}
+    private AdminDashboard adminboard;
+    private Database database;
+    private User user;
 
+    public DeleteCarGUI(AdminDashboard adminboard) {
+        this.adminboard = adminboard;
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,26 +146,26 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation{
 
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
         int id = Integer.parseInt(carID.getText());
-        
-       
-
+        Database database = new Database();
         try {
-            String update = "delete from car where ID = '"+id+"'";
+            
+            String update = "delete from car where ID = '" + id + "'";
             database.getStatement().execute(update);
             System.out.println("Car Deleted Successfully!! ");
         } catch (SQLException e) {
             // TODO: handle exception
             e.printStackTrace();
         }
+        adminboard.dispose();
+        AdminDashboard adminboard = new AdminDashboard();
+        adminboard.setVisible(true);
         dispose();
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
-    private Database database;
-    private User user;
-    private Scanner sc;
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
@@ -174,15 +175,5 @@ public class DeleteCarGUI extends javax.swing.JFrame implements Operation{
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-
-    
-
-    @Override
-    public void operation(Database database, User user) {
-        java.awt.EventQueue.invokeLater(() -> {
-            DeleteCarGUI frame = new DeleteCarGUI(database, sc, user);
-            frame.setVisible(true);
-        });
-    }
 
 }

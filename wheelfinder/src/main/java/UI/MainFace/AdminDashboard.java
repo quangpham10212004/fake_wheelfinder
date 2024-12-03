@@ -9,8 +9,10 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import main.java.Entity.Admin;
 import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
@@ -30,27 +32,23 @@ import main.java.Interact.ShowUserBuys;
 import main.java.Interact.UpdateCar;
 import main.java.Interact.ViewAllUser;
 import main.java.Interact.ViewCar;
+import main.java.UI.Control.ChangePasswordGUI;
 
 /**
  *
  * @author admin
  */
+public class AdminDashboard extends javax.swing.JFrame {
 
-public class AdminDashboard extends javax.swing.JFrame{
     /**
      * Creates new form AdminDashboard
      */
-    
 
     public AdminDashboard() {
-
         initComponents();
         loadCarData(); // Tải dữ liệu khi khởi tạo giao diện
         loadUserData();
     }
-
-
-    
 
     class jPanelGradient extends JPanel {
 
@@ -165,6 +163,11 @@ public class AdminDashboard extends javax.swing.JFrame{
         logoutLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logoutLabel.setForeground(new java.awt.Color(255, 255, 255));
         logoutLabel.setText("Log Out");
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuSideBarPanelLayout = new javax.swing.GroupLayout(menuSideBarPanel);
         menuSideBarPanel.setLayout(menuSideBarPanelLayout);
@@ -382,7 +385,7 @@ public class AdminDashboard extends javax.swing.JFrame{
         );
         mainContentPanel1Layout.setVerticalGroup(
             mainContentPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
 
         addNewAdminButton.setBackground(new java.awt.Color(54, 171, 239));
@@ -595,9 +598,9 @@ public class AdminDashboard extends javax.swing.JFrame{
 
     private void passwordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordLabelMouseClicked
         // TODO add your handling code here:
-        CarAdminPanel.setVisible(false);
-        UserAdminPanel.setVisible(false);
-        PassAdminPanel.setVisible(true);
+        ChangePasswordGUI changepass = new ChangePasswordGUI();
+        changepass.setVisible(true);
+        dispose();
     }//GEN-LAST:event_passwordLabelMouseClicked
 
     private void addNewCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCarButtonActionPerformed
@@ -610,127 +613,135 @@ public class AdminDashboard extends javax.swing.JFrame{
 
     private void addNewAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewAdminButtonActionPerformed
         // TODO add your handling code here:
-        AddNewAdminGUI adaddmin = new AddNewAdminGUI();
+        AddNewAdminGUI adaddmin = new AddNewAdminGUI(this);
         adaddmin.setVisible(true);
     }//GEN-LAST:event_addNewAdminButtonActionPerformed
 
     private void deleteCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCarButtonActionPerformed
-        // TODO add your handling code here:
-       
-
+        DeleteCarGUI delcar = new DeleteCarGUI(this);
+        delcar.setVisible(true);
 
     }//GEN-LAST:event_deleteCarButtonActionPerformed
 
     private void DeleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteUserButtonActionPerformed
-        // TODO add your handling code here:
-
+        DeleteUserGUI delsuer = new DeleteUserGUI(this);
+        delsuer.setVisible(true);
+        
     }//GEN-LAST:event_DeleteUserButtonActionPerformed
+
+    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
+        JOptionPane.showMessageDialog(this, "Cảm ơn bạn đã dùng ứng dụng của chúng tôi", "GoodBye!!!", JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        StartWindow start = new StartWindow();
+        start.setVisible(true);
+        
+    }//GEN-LAST:event_logoutLabelMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new AdminDashboard().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AdminDashboard().setVisible(true);
+            }
+        });
+    }
 
     public void loadCarData() {
-    try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
-        Connection conn = db.getConnection(); // Lấy kết nối từ class Database
-        if (conn == null) {
-            System.out.println("Không thể kết nối đến cơ sở dữ liệu!");
-            return;
+        try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
+            Connection conn = db.getConnection(); // Lấy kết nối từ class Database
+            if (conn == null) {
+                System.out.println("Không thể kết nối đến cơ sở dữ liệu!");
+                return;
+            }
+
+            String query = "SELECT id, brand, model, color, yearRelease, price, available FROM car";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Lấy mô hình bảng và xóa dữ liệu cũ
+            DefaultTableModel tableModel = (DefaultTableModel) viewCarTable.getModel();
+            tableModel.setRowCount(0);
+
+            // Thêm dữ liệu mới vào bảng
+            while (rs.next()) {
+                Object[] row = new Object[7];
+                row[0] = rs.getInt("id");
+                row[1] = rs.getString("brand");
+                row[2] = rs.getString("model");
+                row[3] = rs.getString("color");
+                row[4] = rs.getInt("yearRelease"); // Chỉnh sửa lại tên cột chính xác
+                row[5] = rs.getDouble("price");
+                row[6] = rs.getInt("available");
+                tableModel.addRow(row);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        String query = "SELECT id, brand, model, color, yearRelease, price, available FROM car";
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        // Lấy mô hình bảng và xóa dữ liệu cũ
-        DefaultTableModel tableModel = (DefaultTableModel) viewCarTable.getModel();
-        tableModel.setRowCount(0);
-
-        // Thêm dữ liệu mới vào bảng
-        while (rs.next()) {
-            Object[] row = new Object[7];
-            row[0] = rs.getInt("id");
-            row[1] = rs.getString("brand");
-            row[2] = rs.getString("model");
-            row[3] = rs.getString("color");
-            row[4] = rs.getInt("yearRelease"); // Chỉnh sửa lại tên cột chính xác
-            row[5] = rs.getDouble("price");
-            row[6] = rs.getInt("available");
-            tableModel.addRow(row);
-        }
-
-        rs.close();
-        stmt.close();
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
 
     public void loadUserData() {
-    try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
-        Connection conn = db.getConnection(); // Lấy kết nối từ class Database
-        if (conn == null) {
-            System.out.println("Không thể kết nối đến cơ sở dữ liệu!");
-            return;
+        try (Database db = new Database()) { // Sử dụng try-with-resources để tự động đóng kết nối
+            Connection conn = db.getConnection(); // Lấy kết nối từ class Database
+            if (conn == null) {
+                System.out.println("Không thể kết nối đến cơ sở dữ liệu!");
+                return;
+            }
+
+            String query = "SELECT id, firstName, lastName, email, phoneNum FROM user"; // Truy vấn để lấy dữ liệu người dùng
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            // Lấy mô hình bảng và xóa dữ liaệu cũ
+            DefaultTableModel tableModel = (DefaultTableModel) viewUserTable.getModel();
+            tableModel.setRowCount(0);
+
+            // Thêm dữ liệu mới vào bảng
+            while (rs.next()) {
+                Object[] row = new Object[5]; // Cột tương ứng với 7 trường trong bảng người dùng
+                row[0] = rs.getInt("id");
+                row[1] = rs.getString("firstName");
+                row[2] = rs.getString("lastName");
+                row[3] = rs.getString("email");
+                row[4] = rs.getString("phoneNum");
+                tableModel.addRow(row);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        String query = "SELECT id, firstName, lastName, email, phoneNum FROM user"; // Truy vấn để lấy dữ liệu người dùng
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(query);
-
-        // Lấy mô hình bảng và xóa dữ liệu cũ
-        DefaultTableModel tableModel = (DefaultTableModel) viewUserTable.getModel();
-        tableModel.setRowCount(0);
-
-        // Thêm dữ liệu mới vào bảng
-        while (rs.next()) {
-            Object[] row = new Object[5]; // Cột tương ứng với 7 trường trong bảng người dùng
-            row[0] = rs.getInt("id");
-            row[1] = rs.getString("firstName");
-            row[2] = rs.getString("lastName");
-            row[3] = rs.getString("email");
-            row[4] = rs.getString("phoneNum");
-            tableModel.addRow(row);
-        }
-
-        rs.close();
-        stmt.close();
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-
-}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -773,7 +784,5 @@ public class AdminDashboard extends javax.swing.JFrame{
     private javax.swing.JTable viewCarTable;
     private javax.swing.JTable viewUserTable;
     // End of variables declaration//GEN-END:variables
-
-
 
 }

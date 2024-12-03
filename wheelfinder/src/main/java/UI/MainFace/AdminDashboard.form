@@ -268,6 +268,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Log Out"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoutLabelMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -510,7 +513,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="646" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="645" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

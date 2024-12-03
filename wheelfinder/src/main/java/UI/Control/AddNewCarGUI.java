@@ -6,6 +6,7 @@ package main.java.UI.Control;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import main.java.Entity.Database;
 import main.java.Entity.Operation;
 import main.java.Entity.User;
@@ -232,6 +233,15 @@ public class AddNewCarGUI extends javax.swing.JFrame{
         String modell = model.getText();
         String colour = color.getText();
         String yearrelease = yearRelease.getText();
+        String prices = price.getText();
+        String Num = currentNumber.getText();
+        
+        
+        if (brandname.isEmpty() || modell.isEmpty() || colour.isEmpty() || yearrelease.isEmpty() ||  prices.isEmpty() || Num.isEmpty()  ) {
+        // Hiển thị thông báo yêu cầu điền đầy đủ thông tin
+        JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        return;  // Dừng lại, không tiếp tục thực hiện hành động thêm dữ liệu vào cơ sở dữ liệu
+    }
         double Price = Double.parseDouble(price.getText());
         int curNum = Integer.parseInt(currentNumber.getText());
         try {
@@ -257,6 +267,7 @@ public class AddNewCarGUI extends javax.swing.JFrame{
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+        adminboard.dispose();
         AdminDashboard adminboard = new AdminDashboard();
         adminboard.setVisible(true);
         dispose();
